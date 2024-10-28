@@ -7,7 +7,7 @@ namespace LaminasTest\ServiceManager\Proxy;
 use Laminas\ServiceManager\Exception\ServiceNotFoundException;
 use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Laminas\ServiceManager\Proxy\LazyServiceFactory;
-use LaminasTest\ServiceManager\TestAsset\CallbackService;
+use LaminasTest\ServiceManager\TestAsset\ClassWithCallbackMethod;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use ProxyManager\Factory\LazyLoadingValueHolderFactory;
@@ -51,7 +51,7 @@ final class LazyServiceFactoryTest extends TestCase
 
     public function testThrowExceptionWhenServiceNotExists(): void
     {
-        $callback = $this->createMock(CallbackService::class);
+        $callback = $this->createMock(ClassWithCallbackMethod::class);
 
         $callback
             ->expects(self::never())
@@ -69,11 +69,7 @@ final class LazyServiceFactoryTest extends TestCase
 
     public function testCreates(): void
     {
-        $callback = $this->createMock(CallbackService::class);
-        $callback
-            ->expects(self::once())
-            ->method('callback')
-            ->willReturn('fooValue');
+        $callback = new ClassWithCallbackMethod('fooValue');
 
         $expectedService = $this->createMock(VirtualProxyInterface::class);
         $proxy           = $this->createMock(LazyLoadingInterface::class);

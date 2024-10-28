@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace LaminasTest\ServiceManager\TestAsset;
 
-use Laminas\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\AbstractSingleInstancePluginManager;
 
-final class SimplePluginManager extends AbstractPluginManager
+/**
+ * @template-extends AbstractSingleInstancePluginManager<InvokableObject>
+ */
+final class SimplePluginManager extends AbstractSingleInstancePluginManager
 {
-    /** @var string */
-    protected $instanceOf = InvokableObject::class;
+    /** @var class-string<InvokableObject> */
+    protected string $instanceOf = InvokableObject::class;
 }
