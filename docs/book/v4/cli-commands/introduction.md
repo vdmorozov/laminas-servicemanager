@@ -4,7 +4,7 @@ INFO:
 Starting in 4.0.0, `laminas-servicemanager` moved the CLI tooling to [`laminas-cli`](https://docs.laminas.dev/laminas-cli/) and provides several commands to be executed.
 
 > MISSING: **Installation Requirements**
-> 
+>
 > To run the console tools with `laminas-servicemanager`, the `laminas/laminas-cli` component needs to be added to the project dependencies.
 >
 > ```bash
