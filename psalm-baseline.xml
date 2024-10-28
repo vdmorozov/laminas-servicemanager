@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.22.2@d768d914152dbbf3486c36398802f74e80cfde48">
+<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
   <file src="src/AbstractFactory/ConfigAbstractFactory.php">
     <InvalidStringClass>
       <code><![CDATA[new $requestedName(...$arguments)]]></code>
@@ -27,6 +27,7 @@
   </file>
   <file src="src/Exception/CyclicAliasException.php">
     <InvalidArgument>
+      <code><![CDATA[[self::class, 'printCycle']]]></code>
       <code><![CDATA[self::deDuplicateDetectedCycles($detectedCycles)]]></code>
     </InvalidArgument>
     <PossiblyFalseOperand>
@@ -119,9 +120,6 @@
     </PossiblyNullArgument>
   </file>
   <file src="test/AbstractPluginManagerTest.php">
-    <MixedInferredReturnType>
-      <code><![CDATA[array]]></code>
-    </MixedInferredReturnType>
     <MixedPropertyAssignment>
       <code><![CDATA[$instance]]></code>
     </MixedPropertyAssignment>
@@ -191,9 +189,6 @@
     </UnusedVariable>
   </file>
   <file src="test/ServiceManagerTest.php">
-    <MixedInferredReturnType>
-      <code><![CDATA[array]]></code>
-    </MixedInferredReturnType>
     <MixedOperand>
       <code><![CDATA[$inc]]></code>
     </MixedOperand>

@@ -118,6 +118,7 @@ final class ServiceManagerTest extends TestCase
         self::assertEquals('bar', $instance->foo);
     }
 
+    /** @return array<string, array{0: bool, 1: bool, 2: bool, 3: bool}> */
     public static function shareProvider(): array
     {
         $sharedByDefault          = true;

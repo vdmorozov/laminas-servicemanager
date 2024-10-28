@@ -95,6 +95,7 @@ final class AbstractPluginManagerTest extends TestCase
         self::assertSame($first, $second);
     }
 
+    /** @return array<string, array{0: bool}> */
     public static function shareByDefaultSettings(): array
     {
         return [
