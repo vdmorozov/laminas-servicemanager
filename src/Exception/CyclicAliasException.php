@@ -103,7 +103,7 @@ class CyclicAliasException extends InvalidArgumentException
      */
     private static function printCycles(array $detectedCycles): string
     {
-        return "[\n" . implode("\n", array_map([self::class, 'printCycle'], $detectedCycles)) . "\n]";
+        return "[\n" . implode("\n", array_map(self::printCycle(...), $detectedCycles)) . "\n]";
     }
 
     /**

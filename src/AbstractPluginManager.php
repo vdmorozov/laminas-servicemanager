@@ -117,7 +117,7 @@ abstract class AbstractPluginManager implements PluginManagerInterface
      */
     protected array $shared = [];
 
-    private ServiceManager $plugins;
+    private readonly ServiceManager $plugins;
 
     /**
      * @param ServiceManagerConfiguration $config

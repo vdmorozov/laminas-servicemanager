@@ -71,7 +71,7 @@ final class ConfigAbstractFactory implements AbstractFactoryInterface
             );
         }
 
-        $arguments = array_map([$container, 'get'], $serviceDependencies);
+        $arguments = array_map($container->get(...), $serviceDependencies);
 
         return new $requestedName(...$arguments);
     }
