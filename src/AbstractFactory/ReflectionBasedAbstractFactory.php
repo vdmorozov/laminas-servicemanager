@@ -66,7 +66,7 @@ use function sprintf;
  */
 final class ReflectionBasedAbstractFactory implements AbstractFactoryInterface
 {
-    private ConstructorParameterResolverInterface $constructorParameterResolver;
+    private readonly ConstructorParameterResolverInterface $constructorParameterResolver;
 
     /**
      * Allows overriding the internal list of aliases. These should be of the

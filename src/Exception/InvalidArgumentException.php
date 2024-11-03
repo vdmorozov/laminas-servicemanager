@@ -7,8 +7,7 @@ namespace Laminas\ServiceManager\Exception;
 use InvalidArgumentException as SplInvalidArgumentException;
 use Laminas\ServiceManager\Initializer\InitializerInterface;
 
-use function gettype;
-use function is_object;
+use function get_debug_type;
 use function sprintf;
 
 /**
@@ -22,7 +21,7 @@ class InvalidArgumentException extends SplInvalidArgumentException implements Ex
             'An invalid initializer was registered. Expected a callable or an'
             . ' instance of "%s"; received "%s"',
             InitializerInterface::class,
-            is_object($initializer) ? $initializer::class : gettype($initializer)
+            get_debug_type($initializer)
         ));
     }
 }

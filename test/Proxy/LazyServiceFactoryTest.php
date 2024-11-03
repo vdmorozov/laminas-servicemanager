@@ -91,7 +91,7 @@ final class LazyServiceFactoryTest extends TestCase
                 }
             );
 
-        $result = $this->factory->__invoke($this->container, 'fooService', [$callback, 'callback']);
+        $result = $this->factory->__invoke($this->container, 'fooService', $callback->callback(...));
 
         self::assertSame($expectedService, $result, 'service created not match the expected');
     }
