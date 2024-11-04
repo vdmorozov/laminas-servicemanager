@@ -952,13 +952,12 @@ In addition, review the following changes.
 #### Constructor
 
 - The constructor now accepts the following arguments, in the following order:
-    - The parent container instance; this is usually the application-level
-    `ServiceManager` instance.
+    - The parent container instance; this is usually the application-level `ServiceManager` instance.
     - Optionally, an array of configuration for the plugin manager instance; this
-    should have the same format as for a `ServiceManager` instance.
+      should have the same format as for a `ServiceManager` instance.
 - `validatePlugin()` was renamed to `validate()` (now defined in
   `PluginManagerInterface`). The `AbstractPluginManager` provides
-  a basic implementation (detailed below).
+   a basic implementation (detailed below).
 - The signature of `get()` changes (more below).
 
 For backwards compatibility purposes, the constructor *also* allows the

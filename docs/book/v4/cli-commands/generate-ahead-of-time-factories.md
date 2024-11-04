@@ -77,9 +77,9 @@ This will provide composer with the information, that PHP classes can be found w
 > Those files containing `[*.]local.php` are ignored via `.gitignore` so that these are not accidentally committed.
 > The configuration merge will happen in the following order:
 >
->  1. global configurations are used first
->  2. global configurations are overridden by environment specific configurations
->  3. global and environment specific configurations are overridden by local configurations
+> 1. global configurations are used first
+> 2. global configurations are overridden by environment specific configurations
+> 3. global and environment specific configurations are overridden by local configurations
 
 The CLI command to generate the factories expects a path to a file, which will be created (or overridden) and which will contain **all** service <=> factory entries for the projects container and plugin-managers.
 
