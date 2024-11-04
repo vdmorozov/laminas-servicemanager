@@ -12,11 +12,10 @@ use LaminasTest\ServiceManager\TestAsset\ComplexDependencyObject;
 use LaminasTest\ServiceManager\TestAsset\InvokableObject;
 use LaminasTest\ServiceManager\TestAsset\SecondComplexDependencyObject;
 use LaminasTest\ServiceManager\TestAsset\SimpleDependencyObject;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory
- */
+#[CoversClass(ConfigAbstractFactory::class)]
 final class ConfigAbstractFactoryTest extends TestCase
 {
     private ConfigAbstractFactory $abstractFactory;

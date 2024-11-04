@@ -135,16 +135,25 @@
     <PossiblyUnusedMethod>
       <code><![CDATA[invalidFactoryTargetPaths]]></code>
     </PossiblyUnusedMethod>
+    <UndefinedAttributeClass>
+      <code><![CDATA[CoversClass]]></code>
+    </UndefinedAttributeClass>
   </file>
   <file src="test/Command/ConfigDumperCommandTest.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[ignoreUnresolvedArguments]]></code>
     </PossiblyUnusedMethod>
+    <UndefinedAttributeClass>
+      <code><![CDATA[CoversClass]]></code>
+    </UndefinedAttributeClass>
   </file>
   <file src="test/Command/FactoryCreatorCommandTest.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[invalidArguments]]></code>
     </PossiblyUnusedMethod>
+    <UndefinedAttributeClass>
+      <code><![CDATA[CoversClass]]></code>
+    </UndefinedAttributeClass>
   </file>
   <file src="test/CommonServiceLocatorBehaviorsTrait.php">
     <MissingClosureParamType>
@@ -203,6 +212,9 @@
       <code><![CDATA[assertIsArray]]></code>
       <code><![CDATA[assertIsArray]]></code>
     </RedundantCondition>
+    <UndefinedAttributeClass>
+      <code><![CDATA[CoversClass]]></code>
+    </UndefinedAttributeClass>
   </file>
   <file src="test/Proxy/LazyServiceFactoryTest.php">
     <InvalidArgument>
@@ -267,8 +279,16 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="test/Tool/ConfigDumperTest.php">
+    <UndefinedAttributeClass>
+      <code><![CDATA[CoversClass]]></code>
+    </UndefinedAttributeClass>
     <UnresolvableInclude>
       <code><![CDATA[include $file]]></code>
     </UnresolvableInclude>
+  </file>
+  <file src="test/Tool/FactoryCreatorTest.php">
+    <UndefinedAttributeClass>
+      <code><![CDATA[CoversClass]]></code>
+    </UndefinedAttributeClass>
   </file>
 </files>

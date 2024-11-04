@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace LaminasTest\ServiceManager\Exception;
 
 use Laminas\ServiceManager\Exception\CyclicAliasException;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Laminas\ServiceManager\Exception\CyclicAliasException
- */
+#[CoversClass(CyclicAliasException::class)]
 final class CyclicAliasExceptionTest extends TestCase
 {
     /**

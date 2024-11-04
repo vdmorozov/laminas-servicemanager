@@ -12,6 +12,7 @@ use Laminas\ServiceManager\Proxy\LazyServiceFactory;
 use Laminas\ServiceManager\ServiceManager;
 use LaminasTest\ServiceManager\TestAsset\InvokableObject;
 use LaminasTest\ServiceManager\TestAsset\SimpleServiceManager;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\Attributes\Group;
@@ -21,9 +22,9 @@ use ReflectionProperty;
 use stdClass;
 
 /**
- * @covers \Laminas\ServiceManager\ServiceManager
  * @psalm-import-type ServiceManagerConfiguration from ServiceManager
  */
+#[CoversClass(ServiceManager::class)]
 final class ServiceManagerTest extends TestCase
 {
     use CommonServiceLocatorBehaviorsTrait;
@@ -80,10 +81,6 @@ final class ServiceManagerTest extends TestCase
         self::assertSame($service, $serviceFromServiceManager);
     }
 
-    /**
-     * @covers \Laminas\ServiceManager\ServiceManager::doCreate
-     * @covers \Laminas\ServiceManager\ServiceManager::createDelegatorFromName
-     */
     public function testCanWrapCreationInDelegators(): void
     {
         $config         = [
@@ -617,9 +614,6 @@ final class ServiceManagerTest extends TestCase
         self::assertTrue($serviceManager->has('config'));
     }
 
-    /**
-     * @covers \Laminas\ServiceManager\ServiceManager::mapLazyService
-     */
     #[Group('mutation')]
     public function testCanMapLazyServices(): void
     {

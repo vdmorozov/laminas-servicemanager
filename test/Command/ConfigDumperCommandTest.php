@@ -20,9 +20,7 @@ use function file_get_contents;
 use function realpath;
 use function sprintf;
 
-/**
- * @covers \Laminas\ServiceManager\Command\ConfigDumperCommand
- */
+#[CoversClass(ConfigDumperCommand::class)]
 final class ConfigDumperCommandTest extends TestCase
 {
     private vfsStreamDirectory $configDir;

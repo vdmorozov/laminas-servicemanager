@@ -25,9 +25,7 @@ use function preg_match;
 
 use const PHP_EOL;
 
-/**
- * @covers \Laminas\ServiceManager\Tool\FactoryCreator
- */
+#[CoversClass(FactoryCreator::class)]
 final class FactoryCreatorTest extends TestCase
 {
     private FactoryCreator $factoryCreator;

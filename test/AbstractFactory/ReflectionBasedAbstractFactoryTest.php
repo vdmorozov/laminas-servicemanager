@@ -9,15 +9,14 @@ use Laminas\ServiceManager\Exception\ExceptionInterface;
 use Laminas\ServiceManager\Exception\InvalidArgumentException;
 use Laminas\ServiceManager\Tool\ConstructorParameterResolver\ConstructorParameterResolverInterface;
 use LaminasTest\ServiceManager\AbstractFactory\TestAsset\ClassWithConstructorAcceptingAnyArgument;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use stdClass;
 
-/**
- * @covers \Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory
- */
+#[CoversClass(ReflectionBasedAbstractFactory::class)]
 final class ReflectionBasedAbstractFactoryTest extends TestCase
 {
     /** @var ContainerInterface&MockObject */

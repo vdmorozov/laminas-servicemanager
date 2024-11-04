@@ -15,15 +15,14 @@ use Laminas\ServiceManager\ServiceManager;
 use LaminasTest\ServiceManager\TestAsset\InvokableObject;
 use LaminasTest\ServiceManager\TestAsset\InvokableObjectPluginManager;
 use LaminasTest\ServiceManager\TestAsset\SimplePluginManager;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use stdClass;
 
-/**
- * @covers \Laminas\ServiceManager\AbstractPluginManager
- */
+#[CoversClass(AbstractPluginManager::class)]
 final class AbstractPluginManagerTest extends TestCase
 {
     use CommonServiceLocatorBehaviorsTrait;
@@ -174,8 +173,6 @@ final class AbstractPluginManagerTest extends TestCase
 
     /**
      * Overrides the method in the CommonServiceLocatorBehaviorsTrait, due to behavior differences.
-     *
-     * @covers \Laminas\ServiceManager\AbstractPluginManager::get
      */
     public function testGetRaisesExceptionWhenNoFactoryIsResolved(): void
     {

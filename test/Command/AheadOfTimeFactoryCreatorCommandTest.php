@@ -22,9 +22,7 @@ use function assert;
 use function file_get_contents;
 use function sprintf;
 
-/**
- * @covers \Laminas\ServiceManager\Command\AheadOfTimeFactoryCreatorCommand
- */
+#[CoversClass(AheadOfTimeFactoryCreatorCommand::class)]
 final class AheadOfTimeFactoryCreatorCommandTest extends TestCase
 {
     /** @var MockObject&InputInterface */

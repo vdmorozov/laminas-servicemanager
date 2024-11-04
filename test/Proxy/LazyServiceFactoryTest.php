@@ -8,6 +8,7 @@ use Laminas\ServiceManager\Exception\ServiceNotFoundException;
 use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Laminas\ServiceManager\Proxy\LazyServiceFactory;
 use LaminasTest\ServiceManager\TestAsset\ClassWithCallbackMethod;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use ProxyManager\Factory\LazyLoadingValueHolderFactory;
@@ -15,9 +16,7 @@ use ProxyManager\Proxy\LazyLoadingInterface;
 use ProxyManager\Proxy\VirtualProxyInterface;
 use Psr\Container\ContainerInterface;
 
-/**
- * @covers \Laminas\ServiceManager\Proxy\LazyServiceFactory
- */
+#[CoversClass(LazyServiceFactory::class)]
 final class LazyServiceFactoryTest extends TestCase
 {
     private LazyServiceFactory $factory;

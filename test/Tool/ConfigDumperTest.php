@@ -25,9 +25,7 @@ use function sys_get_temp_dir;
 use function tempnam;
 use function unlink;
 
-/**
- * @covers \Laminas\ServiceManager\Tool\ConfigDumper
- */
+#[CoversClass(ConfigDumper::class)]
 final class ConfigDumperTest extends TestCase
 {
     private ConfigDumper $dumper;

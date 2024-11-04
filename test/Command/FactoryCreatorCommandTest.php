@@ -19,9 +19,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use function file_get_contents;
 use function sprintf;
 
-/**
- * @covers \Laminas\ServiceManager\Command\FactoryCreatorCommand
- */
+#[CoversClass(FactoryCreatorCommand::class)]
 final class FactoryCreatorCommandTest extends TestCase
 {
     private FactoryCreatorCommand $command;
