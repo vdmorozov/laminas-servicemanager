@@ -6,12 +6,11 @@ namespace LaminasTest\ServiceManager\Factory;
 
 use Laminas\ServiceManager\Factory\InvokableFactory;
 use LaminasTest\ServiceManager\TestAsset\InvokableObject;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
-/**
- * @covers \Laminas\ServiceManager\Factory\InvokableFactory
- */
+#[CoversClass(InvokableFactory::class)]
 final class InvokableFactoryTest extends TestCase
 {
     public function testCanCreateObject(): void
