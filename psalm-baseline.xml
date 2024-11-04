@@ -117,17 +117,33 @@
       <code><![CDATA[$key]]></code>
     </PossiblyNullArgument>
   </file>
+  <file src="test/AbstractFactory/ReflectionBasedAbstractFactoryTest.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[classNamesWithoutConstructorArguments]]></code>
+      <code><![CDATA[invalidRequestNames]]></code>
+    </PossiblyUnusedMethod>
+  </file>
   <file src="test/AbstractPluginManagerTest.php">
-    <MixedInferredReturnType>
-      <code><![CDATA[array]]></code>
-    </MixedInferredReturnType>
     <MixedPropertyAssignment>
       <code><![CDATA[$instance]]></code>
     </MixedPropertyAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[shareByDefaultSettings]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="test/Command/AheadOfTimeFactoryCreatorCommandTest.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[invalidFactoryTargetPaths]]></code>
+    </PossiblyUnusedMethod>
   </file>
   <file src="test/Command/ConfigDumperCommandTest.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[ignoreUnresolvedArguments]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="test/Command/FactoryCreatorCommandTest.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[invalidArguments]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="test/CommonServiceLocatorBehaviorsTrait.php">
@@ -153,11 +169,25 @@
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$object['get'][0]]]></code>
     </PossiblyUndefinedArrayOffset>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[abstractFactories]]></code>
+      <code><![CDATA[abstractFactories]]></code>
+      <code><![CDATA[methodsAffectedByOverrideSettings]]></code>
+      <code><![CDATA[methodsAffectedByOverrideSettings]]></code>
+      <code><![CDATA[provideConsistencyOverInternalStatesTests]]></code>
+      <code><![CDATA[provideConsistencyOverInternalStatesTests]]></code>
+    </PossiblyUnusedMethod>
     <UnusedClosureParam>
       <code><![CDATA[$container]]></code>
       <code><![CDATA[$options]]></code>
       <code><![CDATA[$requestedName]]></code>
     </UnusedClosureParam>
+  </file>
+  <file src="test/Exception/CyclicAliasExceptionTest.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[aliasesProvider]]></code>
+      <code><![CDATA[cyclicAliasProvider]]></code>
+    </PossiblyUnusedMethod>
   </file>
   <file src="test/LazyServiceIntegrationTest.php">
     <InvalidReturnStatement>
@@ -190,14 +220,13 @@
     </UnusedVariable>
   </file>
   <file src="test/ServiceManagerTest.php">
-    <MixedInferredReturnType>
-      <code><![CDATA[array]]></code>
-    </MixedInferredReturnType>
     <MixedOperand>
       <code><![CDATA[$inc]]></code>
     </MixedOperand>
     <PossiblyUnusedMethod>
+      <code><![CDATA[aliasedServices]]></code>
       <code><![CDATA[sampleFactory]]></code>
+      <code><![CDATA[shareProvider]]></code>
     </PossiblyUnusedMethod>
   </file>
   <file src="test/StaticAnalysis/CallablePluginManager.php">
@@ -229,6 +258,13 @@
     <UnusedClass>
       <code><![CDATA[UnionPluginManager]]></code>
     </UnusedClass>
+  </file>
+  <file src="test/Tool/AheadOfTimeFactoryCompiler/AheadOfTimeFactoryCompilerTest.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[configurationsWithoutRegisteredServices]]></code>
+      <code><![CDATA[nonClassReferencingServiceNames]]></code>
+      <code><![CDATA[nonClassReferencingServiceNamesPhp81Upwards]]></code>
+    </PossiblyUnusedMethod>
   </file>
   <file src="test/Tool/ConfigDumperTest.php">
     <UnresolvableInclude>
