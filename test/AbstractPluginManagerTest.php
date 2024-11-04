@@ -15,6 +15,8 @@ use Laminas\ServiceManager\ServiceManager;
 use LaminasTest\ServiceManager\TestAsset\InvokableObject;
 use LaminasTest\ServiceManager\TestAsset\InvokableObjectPluginManager;
 use LaminasTest\ServiceManager\TestAsset\SimplePluginManager;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use stdClass;
@@ -103,9 +105,7 @@ final class AbstractPluginManagerTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider shareByDefaultSettings
-     */
+    #[DataProvider('shareByDefaultSettings')]
     public function testReturnsDiscreteInstancesIfOptionsAreProvidedRegardlessOfShareByDefaultSetting(
         bool $shareByDefault
     ): void {
@@ -163,7 +163,7 @@ final class AbstractPluginManagerTest extends TestCase
         $instance = $pluginManager->get(stdClass::class);
 
         self::assertInstanceOf(stdClass::class, $instance);
-        self::assertTrue(isset($instance->option), 'Delegator-injected option was not found');
+        self::assertObjectHasProperty('option', $instance, 'Delegator-injected option was not found');
         self::assertEquals(
             $config['option'],
             $instance->option,
@@ -185,10 +185,8 @@ final class AbstractPluginManagerTest extends TestCase
         $pluginManager->get('Some\Unknown\Service');
     }
 
-    /**
-     * @group migration
-     * @group autoinvokable
-     */
+    #[Group('migration')]
+    #[Group('autoinvokable')]
     public function testAutoInvokableServicesAreNotKnownBeforeRetrieval(): void
     {
         $pluginManager = new SimplePluginManager(new ServiceManager());
@@ -196,10 +194,8 @@ final class AbstractPluginManagerTest extends TestCase
         self::assertFalse($pluginManager->has(InvokableObject::class));
     }
 
-    /**
-     * @group migration
-     * @group autoinvokable
-     */
+    #[Group('migration')]
+    #[Group('autoinvokable')]
     public function testSupportsRetrievingAutoInvokableServicesByDefault(): void
     {
         $pluginManager = new SimplePluginManager(new ServiceManager());
@@ -208,10 +204,8 @@ final class AbstractPluginManagerTest extends TestCase
         self::assertInstanceOf(InvokableObject::class, $invokable);
     }
 
-    /**
-     * @group migration
-     * @group autoinvokable
-     */
+    #[Group('migration')]
+    #[Group('autoinvokable')]
     public function testPluginManagersMayOptOutOfSupportingAutoInvokableServices(): void
     {
         $pluginManager = new TestAsset\NonAutoInvokablePluginManager(new ServiceManager());
@@ -231,10 +225,8 @@ final class AbstractPluginManagerTest extends TestCase
         ]);
     }
 
-    /**
-     * @group 79
-     * @group 78
-     */
+    #[Group('79')]
+    #[Group('78')]
     public function testAbstractFactoryGetsCreationContext(): void
     {
         $serviceManager = new ServiceManager();

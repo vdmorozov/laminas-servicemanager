@@ -12,6 +12,7 @@ use LaminasTest\ServiceManager\TestAsset\SimpleDependencyObject;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use org\bovigo\vfs\vfsStreamFile;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\InputInterface;
@@ -60,9 +61,7 @@ final class AheadOfTimeFactoryCreatorCommandTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider invalidFactoryTargetPaths
-     */
+    #[DataProvider('invalidFactoryTargetPaths')]
     public function testEmitsErrorMessageIfFactoryTargetPathDoesNotMatchRequirements(string $factoryTargetPath): void
     {
         $command = new AheadOfTimeFactoryCreatorCommand([], $factoryTargetPath, $this->factoryCompiler);

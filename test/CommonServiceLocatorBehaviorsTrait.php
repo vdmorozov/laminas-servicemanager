@@ -24,6 +24,9 @@ use LaminasTest\ServiceManager\TestAsset\InvokableObject;
 use LaminasTest\ServiceManager\TestAsset\PassthroughDelegatorFactory;
 use LaminasTest\ServiceManager\TestAsset\SampleFactory;
 use LaminasTest\ServiceManager\TestAsset\SimpleAbstractFactory;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -381,9 +384,7 @@ trait CommonServiceLocatorBehaviorsTrait
         self::assertInstanceOf(stdClass::class, $object);
     }
 
-    /**
-     * @group has
-     */
+    #[Group('has')]
     public function testHasReturnsFalseIfServiceNotConfigured(): void
     {
         $serviceManager = self::createContainer([
@@ -395,9 +396,7 @@ trait CommonServiceLocatorBehaviorsTrait
         self::assertFalse($serviceManager->has('Some\Made\Up\Entry'));
     }
 
-    /**
-     * @group has
-     */
+    #[Group('has')]
     public function testHasReturnsTrueIfServiceIsConfigured(): void
     {
         $serviceManager = self::createContainer([
@@ -409,9 +408,7 @@ trait CommonServiceLocatorBehaviorsTrait
         self::assertTrue($serviceManager->has(stdClass::class));
     }
 
-    /**
-     * @group has
-     */
+    #[Group('has')]
     public function testHasReturnsTrueIfFactoryIsConfigured(): void
     {
         $serviceManager = self::createContainer([
@@ -432,10 +429,8 @@ trait CommonServiceLocatorBehaviorsTrait
         ];
     }
 
-    /**
-     * @group has
-     * @dataProvider abstractFactories
-     */
+    #[DataProvider('abstractFactories')]
+    #[Group('has')]
     public function testHasChecksAgainstAbstractFactories(
         AbstractFactoryInterface $abstractFactory,
         bool $expected,
@@ -577,9 +572,9 @@ trait CommonServiceLocatorBehaviorsTrait
     }
 
     /**
-     * @group mutation
      * @covers \Laminas\ServiceManager\ServiceManager::setAlias
      */
+    #[Group('mutation')]
     public function testCanInjectAliases(): void
     {
         $container = self::createContainer([
@@ -599,9 +594,9 @@ trait CommonServiceLocatorBehaviorsTrait
     }
 
     /**
-     * @group mutation
      * @covers \Laminas\ServiceManager\ServiceManager::setInvokableClass
      */
+    #[Group('mutation')]
     public function testCanInjectInvokables(): void
     {
         $container = self::createContainer();
@@ -616,9 +611,9 @@ trait CommonServiceLocatorBehaviorsTrait
     }
 
     /**
-     * @group mutation
      * @covers \Laminas\ServiceManager\ServiceManager::setFactory
      */
+    #[Group('mutation')]
     public function testCanInjectFactories(): void
     {
         $instance  = new stdClass();
@@ -634,9 +629,9 @@ trait CommonServiceLocatorBehaviorsTrait
     }
 
     /**
-     * @group mutation
      * @covers \Laminas\ServiceManager\ServiceManager::addAbstractFactory
      */
+    #[Group('mutation')]
     public function testCanInjectAbstractFactories(): void
     {
         $container = self::createContainer();
@@ -650,9 +645,9 @@ trait CommonServiceLocatorBehaviorsTrait
     }
 
     /**
-     * @group mutation
      * @covers \Laminas\ServiceManager\ServiceManager::addDelegator
      */
+    #[Group('mutation')]
     public function testCanInjectDelegators(): void
     {
         $container = self::createContainer([
@@ -675,9 +670,9 @@ trait CommonServiceLocatorBehaviorsTrait
     }
 
     /**
-     * @group mutation
      * @covers \Laminas\ServiceManager\ServiceManager::addInitializer
      */
+    #[Group('mutation')]
     public function testCanInjectInitializers(): void
     {
         $container = self::createContainer([
@@ -702,9 +697,9 @@ trait CommonServiceLocatorBehaviorsTrait
     }
 
     /**
-     * @group mutation
      * @covers \Laminas\ServiceManager\ServiceManager::setService
      */
+    #[Group('mutation')]
     public function testCanInjectServices(): void
     {
         $container = self::createContainer();
@@ -714,9 +709,9 @@ trait CommonServiceLocatorBehaviorsTrait
     }
 
     /**
-     * @group mutation
      * @covers \Laminas\ServiceManager\ServiceManager::setShared
      */
+    #[Group('mutation')]
     public function testCanInjectSharingRules(): void
     {
         $container = self::createContainer([
@@ -782,10 +777,8 @@ trait CommonServiceLocatorBehaviorsTrait
         ];
     }
 
-    /**
-     * @dataProvider methodsAffectedByOverrideSettings
-     * @group mutation
-     */
+    #[DataProvider('methodsAffectedByOverrideSettings')]
+    #[Group('mutation')]
     public function testConfiguringInstanceRaisesExceptionIfAllowOverrideIsFalse(string $method, array $args): void
     {
         $container = self::createContainer(['services' => ['foo' => $this]]);
@@ -794,9 +787,7 @@ trait CommonServiceLocatorBehaviorsTrait
         $container->$method(...$args);
     }
 
-    /**
-     * @group mutation
-     */
+    #[Group('mutation')]
     public function testAllowOverrideFlagIsFalseByDefault(): ContainerInterface
     {
         $container = self::createContainer();
@@ -806,10 +797,8 @@ trait CommonServiceLocatorBehaviorsTrait
         return $container;
     }
 
-    /**
-     * @group mutation
-     * @depends testAllowOverrideFlagIsFalseByDefault
-     */
+    #[Depends('testAllowOverrideFlagIsFalseByDefault')]
+    #[Group('mutation')]
     public function testAllowOverrideFlagIsMutable(ServiceManager|AbstractPluginManager $container): void
     {
         $container->setAllowOverride(true);
@@ -817,9 +806,7 @@ trait CommonServiceLocatorBehaviorsTrait
         self::assertTrue($container->getAllowOverride());
     }
 
-    /**
-     * @group zendframework/zend-servicemanager#83
-     */
+    #[Group('zendframework/zend-servicemanager#83')]
     public function testCrashesOnCyclicAliases(): void
     {
         $this->expectException(CyclicAliasException::class);
@@ -868,8 +855,8 @@ trait CommonServiceLocatorBehaviorsTrait
      * remain stable through the internal states.
      *
      * @param list<non-empty-string> $test
-     * @dataProvider provideConsistencyOverInternalStatesTests
      */
+    #[DataProvider('provideConsistencyOverInternalStatesTests')]
     public function testConsistencyOverInternalStates(
         ContainerInterface $smTemplate,
         string $name,

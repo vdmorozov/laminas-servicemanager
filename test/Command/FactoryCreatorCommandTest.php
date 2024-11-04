@@ -10,6 +10,7 @@ use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\Tool\FactoryCreatorInterface;
 use LaminasTest\ServiceManager\TestAsset\ObjectWithScalarDependency;
 use LaminasTest\ServiceManager\TestAsset\SimpleDependencyObject;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\InputInterface;
@@ -55,9 +56,7 @@ final class FactoryCreatorCommandTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider invalidArguments
-     */
+    #[DataProvider('invalidArguments')]
     public function testEmitsErrorMessageIfArgumentIsNotAClass(string $argument): void
     {
         $this->input
