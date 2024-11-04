@@ -16,6 +16,8 @@ use LaminasTest\ServiceManager\TestAsset\ObjectWithObjectScalarDependency;
 use LaminasTest\ServiceManager\TestAsset\ObjectWithScalarDependency;
 use LaminasTest\ServiceManager\TestAsset\SecondComplexDependencyObject;
 use LaminasTest\ServiceManager\TestAsset\SimpleDependencyObject;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 
@@ -24,9 +26,7 @@ use function sys_get_temp_dir;
 use function tempnam;
 use function unlink;
 
-/**
- * @covers \Laminas\ServiceManager\Tool\ConfigDumper
- */
+#[CoversClass(ConfigDumper::class)]
 final class ConfigDumperTest extends TestCase
 {
     private ConfigDumper $dumper;
@@ -304,9 +304,7 @@ final class ConfigDumperTest extends TestCase
         self::assertSame($expectedConfig, $this->dumper->createFactoryMappingsFromConfig($config));
     }
 
-    /**
-     * @depends testCreateDependencyConfigSimpleDependencyReturnsCorrectly
-     */
+    #[Depends('testCreateDependencyConfigSimpleDependencyReturnsCorrectly')]
     public function testDumpConfigFileReturnsContentsForConfigFileUsingUsingClassNotationAndShortArrays(
         array $config
     ): void {

@@ -11,6 +11,7 @@ use Laminas\ServiceManager\Factory\InvokableFactory;
 use Laminas\ServiceManager\Proxy\LazyServiceFactory;
 use Laminas\ServiceManager\ServiceManager;
 use LaminasTest\ServiceManager\TestAsset\InvokableObject;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ProxyManager\Autoloader\AutoloaderInterface;
 use RecursiveDirectoryIterator;
@@ -33,9 +34,7 @@ use function spl_autoload_unregister;
 use function sys_get_temp_dir;
 use function unlink;
 
-/**
- * @covers \Laminas\ServiceManager\ServiceManager
- */
+#[CoversClass(ServiceManager::class)]
 final class LazyServiceIntegrationTest extends TestCase
 {
     /** @var non-empty-string */
@@ -116,9 +115,6 @@ final class LazyServiceIntegrationTest extends TestCase
         self::assertNotEquals([], iterator_to_array($this->listProxyFiles()), $message);
     }
 
-    /**
-     * @covers \Laminas\ServiceManager\ServiceManager::createLazyServiceDelegatorFactory
-     */
     public function testCanUseLazyServiceFactoryFactoryToCreateLazyServiceFactoryToActAsDelegatorToCreateLazyService(): void
     {
         $config = [
@@ -169,9 +165,6 @@ final class LazyServiceIntegrationTest extends TestCase
         self::assertCount(1, $proxyAutoloadFunctions, 'Only 1 proxy autoloader should be registered');
     }
 
-    /**
-     * @covers \Laminas\ServiceManager\ServiceManager::createLazyServiceDelegatorFactory
-     */
     public function testMissingClassMapRaisesExceptionOnAttemptToRetrieveLazyService(): void
     {
         $config = [
@@ -190,9 +183,6 @@ final class LazyServiceIntegrationTest extends TestCase
         $container->get(InvokableObject::class);
     }
 
-    /**
-     * @covers \Laminas\ServiceManager\ServiceManager::createLazyServiceDelegatorFactory
-     */
     public function testWillNotGenerateProxyClassFilesByDefault(): void
     {
         $config = [

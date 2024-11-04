@@ -11,6 +11,7 @@ use LaminasTest\ServiceManager\TestAsset\ObjectWithScalarDependency;
 use LaminasTest\ServiceManager\TestAsset\SimpleDependencyObject;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\InputInterface;
@@ -20,9 +21,7 @@ use function file_get_contents;
 use function realpath;
 use function sprintf;
 
-/**
- * @covers \Laminas\ServiceManager\Command\ConfigDumperCommand
- */
+#[CoversClass(ConfigDumperCommand::class)]
 final class ConfigDumperCommandTest extends TestCase
 {
     private vfsStreamDirectory $configDir;

@@ -21,6 +21,7 @@ use LaminasTest\ServiceManager\AbstractFactory\TestAsset\SampleInterface;
 use LaminasTest\ServiceManager\AbstractFactory\TestAsset\ValidatorPluginManager;
 use LaminasTest\ServiceManager\TestAsset\ClassDependingOnAnInterface;
 use LaminasTest\ServiceManager\TestAsset\ClassWithConstructorWithOnlyOptionalArguments;
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
@@ -206,9 +207,7 @@ final class ConstructorParameterResolverTest extends TestCase
         self::assertSame($validators, $parameters[0]);
     }
 
-    /**
-     * @depends testWillResolveConstructorArgumentsAccordingToTheirPosition
-     */
+    #[Depends('testWillResolveConstructorArgumentsAccordingToTheirPosition')]
     public function testResolvesAMixOfParameterTypes(): void
     {
         $this->container

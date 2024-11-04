@@ -12,15 +12,19 @@ use Laminas\ServiceManager\Proxy\LazyServiceFactory;
 use Laminas\ServiceManager\ServiceManager;
 use LaminasTest\ServiceManager\TestAsset\InvokableObject;
 use LaminasTest\ServiceManager\TestAsset\SimpleServiceManager;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use ReflectionProperty;
 use stdClass;
 
 /**
- * @covers \Laminas\ServiceManager\ServiceManager
  * @psalm-import-type ServiceManagerConfiguration from ServiceManager
  */
+#[CoversClass(ServiceManager::class)]
 final class ServiceManagerTest extends TestCase
 {
     use CommonServiceLocatorBehaviorsTrait;
@@ -77,10 +81,6 @@ final class ServiceManagerTest extends TestCase
         self::assertSame($service, $serviceFromServiceManager);
     }
 
-    /**
-     * @covers \Laminas\ServiceManager\ServiceManager::doCreate
-     * @covers \Laminas\ServiceManager\ServiceManager::createDelegatorFromName
-     */
     public function testCanWrapCreationInDelegators(): void
     {
         $config         = [
@@ -109,7 +109,7 @@ final class ServiceManagerTest extends TestCase
 
         $instance = $serviceManager->get(stdClass::class);
         self::assertInstanceOf(stdClass::class, $instance);
-        self::assertTrue(isset($instance->option), 'Delegator-injected option was not found');
+        self::assertObjectHasProperty('option', $instance, 'Delegator-injected option was not found');
         self::assertEquals(
             $config['option'],
             $instance->option,
@@ -178,9 +178,7 @@ final class ServiceManagerTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider shareProvider
-     */
+    #[DataProvider('shareProvider')]
     public function testShareability(
         bool $sharedByDefault,
         bool $serviceShared,
@@ -253,9 +251,7 @@ final class ServiceManagerTest extends TestCase
         );
     }
 
-    /**
-     * @depends testMapsNonSymmetricInvokablesAsAliasPlusInvokableFactory
-     */
+    #[Depends('testMapsNonSymmetricInvokablesAsAliasPlusInvokableFactory')]
     public function testSharedServicesReferencingInvokableAliasShouldBeHonored(): void
     {
         $config = [
@@ -314,9 +310,7 @@ final class ServiceManagerTest extends TestCase
         self::assertSame($service, $alias);
     }
 
-    /**
-     * @depends testAliasToAnExplicitServiceShouldWork
-     */
+    #[Depends('testAliasToAnExplicitServiceShouldWork')]
     public function testSetAliasShouldWorkWithRecursiveAlias(): void
     {
         $config         = [
@@ -507,8 +501,8 @@ final class ServiceManagerTest extends TestCase
      * @param ServiceManagerConfiguration $config
      * @param non-empty-string $serviceName
      * @param non-empty-string $alias
-     * @dataProvider aliasedServices
      */
+    #[DataProvider('aliasedServices')]
     public function testWontShareServiceWhenRequestedByAlias(array $config, string $serviceName, string $alias): void
     {
         $serviceManager                        = new ServiceManager($config);
@@ -620,10 +614,7 @@ final class ServiceManagerTest extends TestCase
         self::assertTrue($serviceManager->has('config'));
     }
 
-    /**
-     * @group mutation
-     * @covers \Laminas\ServiceManager\ServiceManager::mapLazyService
-     */
+    #[Group('mutation')]
     public function testCanMapLazyServices(): void
     {
         $container = self::createContainer();

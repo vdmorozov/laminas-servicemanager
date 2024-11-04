@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace LaminasTest\ServiceManager\Exception;
 
 use Laminas\ServiceManager\Exception\CyclicAliasException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Laminas\ServiceManager\Exception\CyclicAliasException
- */
+#[CoversClass(CyclicAliasException::class)]
 final class CyclicAliasExceptionTest extends TestCase
 {
     /**
-     * @dataProvider cyclicAliasProvider
      * @param string               $alias, conflicting alias key
      * @param array<string,string> $aliases
      */
+    #[DataProvider('cyclicAliasProvider')]
     public function testFromCyclicAlias(string $alias, array $aliases, string $expectedMessage): void
     {
         $exception = CyclicAliasException::fromCyclicAlias($alias, $aliases);
@@ -96,9 +96,9 @@ final class CyclicAliasExceptionTest extends TestCase
     }
 
     /**
-     * @dataProvider aliasesProvider
      * @param array<string,string> $aliases
      */
+    #[DataProvider('aliasesProvider')]
     public function testFromAliasesMap(array $aliases, string $expectedMessage): void
     {
         $exception = CyclicAliasException::fromAliasesMap($aliases);

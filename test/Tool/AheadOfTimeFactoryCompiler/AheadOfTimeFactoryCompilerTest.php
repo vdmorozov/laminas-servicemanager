@@ -13,6 +13,7 @@ use LaminasTest\ServiceManager\TestAsset\ComplexDependencyObject;
 use LaminasTest\ServiceManager\TestAsset\SimpleDependencyObject;
 use LaminasTest\ServiceManager\Tool\AheadOfTimeFactoryCompiler\TestAsset\WhateverEnum;
 use LaminasTest\ServiceManager\Tool\AheadOfTimeFactoryCompiler\TestAsset\WhateverTrait;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -56,9 +57,7 @@ final class AheadOfTimeFactoryCompilerTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider configurationsWithoutRegisteredServices
-     */
+    #[DataProvider('configurationsWithoutRegisteredServices')]
     public function testCanHandleConfigWithoutServicesRegisteredWithReflectionBasedAbstractFactory(array $config): void
     {
         $this->factoryCreator
@@ -126,10 +125,8 @@ final class AheadOfTimeFactoryCompilerTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider nonClassReferencingServiceNames
-     * @dataProvider nonClassReferencingServiceNamesPhp81Upwards
-     */
+    #[DataProvider('nonClassReferencingServiceNames')]
+    #[DataProvider('nonClassReferencingServiceNamesPhp81Upwards')]
     public function testWillRaiseExceptionWhenFactoryIsUsedWithNonClassReferencingService(string $serviceName): void
     {
         $config = [
