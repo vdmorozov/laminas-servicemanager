@@ -114,6 +114,7 @@ final class LazyServiceFactoryTest extends TestCase
             ->expects(self::once())
             ->method('createProxy')
             ->willReturnCallback(
+                /** @psalm-suppress UnusedVariable */
                 static function (string $className, callable $initializer) use ($expectedService, $proxy): MockObject {
                     $wrappedInstance = null;
                     $initializer($wrappedInstance, $proxy);
